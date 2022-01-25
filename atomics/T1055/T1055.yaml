@@ -85,7 +85,7 @@ atomic_tests:
 - name: Execute Shellshock Commands on Linux 
   description: |
     Executes Commands unsing the portraying the shellshock vulnerability
-
+  auto_generated_guid:
   supported_platforms:
     - linux
 
