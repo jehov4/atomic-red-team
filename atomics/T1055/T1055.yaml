@@ -82,7 +82,7 @@ atomic_tests:
     name: command_prompt
     elevation_required: false # locally not, but remotely on target machine then yes
 
-- name: Execute Shellshock Commands on Linux 
+- name: Shellshock
   description: |
     Executes Commands unsing the portraying the shellshock vulnerability
   supported_platforms:
