@@ -86,7 +86,7 @@ atomic_tests:
   description: |
     Executes Commands unsing the portraying the shellshock vulnerability
   supported_platforms:
-    - linux
+  - linux
 
 #  input_arguments:
 #    output_file:
